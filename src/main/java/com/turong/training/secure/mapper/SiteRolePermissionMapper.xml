@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.turong.training.secure.mapper.SiteRolePermissionMapper">
+<!--    <select id="getAllRolePermissions" resultMap="allRolePermissionsMap">-->
+<!--        select-->
+<!--        r.role as role,-->
+<!--        srp.tenant_id as tenant_id,-->
+<!--        p.id as permission_id,-->
+<!--        p.perm_name as permission_name,-->
+<!--        p.perm_desc as permission_desc-->
+<!--&lt;!&ndash;        f.func_name as function_name,&ndash;&gt;-->
+<!--&lt;!&ndash;        f.func_desc as function_desc,&ndash;&gt;-->
+<!--&lt;!&ndash;        f.func_verb as function_verb,&ndash;&gt;-->
+<!--&lt;!&ndash;        f.func_url as function_url&ndash;&gt;-->
+<!--        from site_role_permission srp-->
+<!--        inner join site_role r on r.id = srp.role and r.tenant_id = srp.tenant_id-->
+<!--        inner join site_permission p on p.id = srp.perm_id and p.tenant_id = srp.tenant_id-->
+<!--        inner join site_permission_function pf on pf.perm_id = p.id and pf.tenant_id = srp.tenant_id-->
+<!--        inner join site_function f on f.id = pf.func_id and f.tenant_id = srp.tenant_id-->
+<!--        where r.role = #{role} and srp.tenant_id = #{tenantId}-->
+<!--    </select>-->
+<!--    <resultMap id="allRolePermissionsMap" type="com.turong.training.secure.model.TenantRolePermission">-->
+<!--        <result property="role" column="role"/>-->
+<!--        <result property="tenantId" column="tenant_id"/>-->
+<!--        &lt;!&ndash;        <collection property="permissions"&ndash;&gt;-->
+<!--        &lt;!&ndash;                    javaType="java.util.List"&ndash;&gt;-->
+<!--        &lt;!&ndash;                    ofType="com.turong.training.secure.model.TenantPermission">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result property="permName" column="permission_name"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result property="permDesc" column="permission_desc"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </collection>&ndash;&gt;-->
+<!--        <collection property="permissions"-->
+<!--                    javaType="java.util.List"-->
+<!--                    ofType="com.turong.training.secure.model.TenantPermission"-->
+<!--                    resultMap="permissionMap"/>-->
+<!--        &lt;!&ndash;        <collection property="permissions" ofType="com.turong.training.secure.model.TenantPermission">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result property="permName" column="permission_name"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result property="permDesc" column="permission_desc"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </collection>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <association property="permissions" columnPrefix="permission_" resultMap="permissionMap"/>&ndash;&gt;-->
+<!--    </resultMap>-->
+<!--    <resultMap id="permissionMap" type="com.turong.training.secure.model.TenantPermission">-->
+<!--        <id property="id" column="permission_id"/>-->
+<!--        <result property="permName" column="permission_name"/>-->
+<!--        <result property="permDesc" column="permission_desc"/>-->
+<!--&lt;!&ndash;        <collection property="functions"&ndash;&gt;-->
+<!--&lt;!&ndash;                    column="id"&ndash;&gt;-->
+<!--&lt;!&ndash;                    javaType="java.util.List"&ndash;&gt;-->
+<!--&lt;!&ndash;                    ofType="com.turong.training.secure.model.TenantFunction"&ndash;&gt;-->
+<!--&lt;!&ndash;                    select="getFunctionsByPermission"&ndash;&gt;-->
+<!--&lt;!&ndash;        />&ndash;&gt;-->
+<!--        <collection property="functions"-->
+<!--                    javaType="java.util.List"-->
+<!--                    ofType="com.turong.training.secure.model.TenantFunction"-->
+<!--                    resultMap="functionsMap"-->
+<!--                    foreignColumn=""-->
+<!--        />-->
+<!--        &lt;!&ndash;        <association property="functions" columnPrefix="function_" resultMap="functionsMap"/>&ndash;&gt;-->
+<!--    </resultMap>-->
+<!--    <select id="getFunctionsByPermission" resultMap="functionsMap" parameterType="java.lang.Long">-->
+<!--        select-->
+<!--        f.func_name as function_name,-->
+<!--        f.func_desc as function_desc,-->
+<!--        f.func_verb as function_verb,-->
+<!--        f.func_url as function_url-->
+<!--        from site_function f-->
+<!--        inner join site_permission_function pf on pf.func_id = f.id-->
+<!--        where pf.perm_id = #{id}-->
+<!--    </select>-->
+<!--    <resultMap id="functionsMap" type="com.turong.training.secure.model.TenantFunction">-->
+<!--        <result property="funcName" column="func_name"/>-->
+<!--        <result property="funcDesc" column="func_desc"/>-->
+<!--        <result property="funcVerb" column="func_verb"/>-->
+<!--        <result property="funcUrl" column="func_url"/>-->
+<!--    </resultMap>-->
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.turong.training.secure.mapper.SiteUserMapper">
+<!--    <select id="findUser" resultMap="findUserMap" parameterType="java.lang.String">-->
+<!--        select * from site_user where email = #{email}-->
+<!--    </select>-->
+    <resultMap id="findUserMap" type="com.turong.training.secure.entity.SiteUser" extends="baseEntityMap">
+        <result property="email" column="email"/>
+    </resultMap>
+    <resultMap type="com.turong.training.secure.entity.BaseEntity" id="baseEntityMap">
+        <result property="id" column="id"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="modifiedBy" column="modified_by"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="modifiedAt" column="modified_at"/>
+    </resultMap>
+    <resultMap id="countUserMap" type="com.turong.training.secure.entity.SiteUser" extends="baseEntityMap">
+        <result property="tenantId" column="tenant_id"/>
+        <result property="userCount" column="user_count"/>
+    </resultMap>
+
+    <select id="countUsersByTenantIds" resultType="com.turong.training.secure.entity.SiteUser" resultMap="countUserMap">
+        SELECT tenant_id, count(1) as user_count
+        FROM site_user
+        WHERE tenant_id in
+        <foreach item="item" index="index" collection="tenantIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        group by tenant_id
+    </select>
+</mapper>
