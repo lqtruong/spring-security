@@ -40,7 +40,7 @@ public class TenantRequestFilter extends OncePerRequestFilter {
         final String adminId = httpServletRequest.getHeader(HEADER_ADMIN_ID);
         final String role = httpServletRequest.getHeader(HEADER_ROLE);
         if (isBlank(adminId) || isBlank(role)) {
-            throw new IllegalArgumentException("Request to Cloud UFO has not been authorized. No identification found.");
+            throw new IllegalArgumentException("Request has not been authorized. No identification found.");
         }
 
         TenantUserDetails userDetails = authService.loadUserByEmail(adminId);
